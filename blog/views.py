@@ -2,7 +2,7 @@ from telnetlib import STATUS
 
 import requests
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Contact, Comment, Category
 from django.db.models import Count
 
@@ -95,7 +95,8 @@ def blog_search_view(request):
 
 
 def category_detail_view(request, pk):
-    post = Post.objects.filter(pk=pk).first()
+    post = get_object_or_404(Post, pk=pk)
+    related_posts = post.get_related_posts()
     category = Category.objects.all()
     if request.method == 'POST':
         data = request.POST
@@ -106,7 +107,7 @@ def category_detail_view(request, pk):
     comments = Comment.objects.filter(post_id=pk)
     d = {
         'post': post,
-        # 'popular_posts': Post.objects.filter(is_published=True).order_by('-comment'),
+        'related_posts': related_posts,
         'comments': comments,
         'category': category
     }

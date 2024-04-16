@@ -26,6 +26,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_related_posts(self):
+        related_posts = Post.objects.filter(category=self.category).exclude(id=self.id).distinct()
+        return related_posts
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
