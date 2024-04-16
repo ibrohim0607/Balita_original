@@ -2,7 +2,7 @@ from django.db import models
 from config.validators import validate_uz_phone_number
 
 
-class Tag(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=100)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -16,7 +16,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='posts/')
-    tags = models.ForeignKey(Tag, on_delete=models.CASCADE, default=1)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
 
     is_published = models.BooleanField(default=True)
 

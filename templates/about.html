@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
-{% block context %}
+{% block content %}
     <section class="site-section">
         <div class="container">
             <div class="row blog-entries">
@@ -8,7 +8,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="mb-4">Hi There! I'm Meagan Smith</h2>
-                            <p class="mb-5"><img src="{% static 'images/img_6.jpg' %}" alt="Image placeholder" class="img-fluid"></p>
+                            <p class="mb-5"><img src="{% static 'images/img_6.jpg' %}" alt="Image placeholder"
+                                                 class="img-fluid"></p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum minima eveniet recusandae
                                 suscipit eum laboriosam fugit amet deleniti iste et. Ad dolores, necessitatibus non
                                 saepe
@@ -36,19 +37,17 @@
                             <h2>My Latest Posts</h2>
                         </div>
                         <div class="col-md-12">
-                            {% for post in posts|slice:':4' %}
+                            {% for post in posts %}
                                 <div class="post-entry-horzontal">
-                                    <a href="/blog/{{ post.id }}">
-                                        <div class="image"
-                                             style="background-image: url({{ post.image.url|safe }});"></div>
+                                    <a href="/blog/{{ post.id }}/">
+                                        <div class="image" style="background-image: url({{ post.image.url }});"></div>
                                         <span class="text">
-<div class="post-meta">
-<span class="category">{{ post.tags.name }}</span>
-<span class="mr-2">{{ post.created_at }}</span> &bullet;
-<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-</div>
-<h2>{{ post.title }}</h2>
-</span>
+                                        <div class="post-meta">
+                                            <span class="category">{{ post.category }}</span>
+                                            <span class="mr-2">{{ post.created_at }} </span>
+                                        </div>  
+                                        <h2>{{ post.title }}</h2>
+                                    </span>
                                     </a>
                                 </div>
                             {% endfor %}
@@ -59,6 +58,8 @@
                             <nav aria-label="Page navigation" class="text-center">
                                 <ul class="pagination">
                                     {% if posts.has_previous %}
+
+                                        ...
                                         <li class="page-item"><a class="page-link"
                                                                  href="?page={{ posts.previous_page_number }}">Prev</a>
                                         </li>
@@ -83,16 +84,6 @@
                 </div>
 
                 <div class="col-md-12 col-lg-4 sidebar">
-                    <div class="sidebar-box search-form-wrap">
-                        <form action="#" class="search-form">
-                            <div class="form-group">
-                                <span class="icon fa fa-search"></span>
-                                <input type="text" class="form-control" id="s"
-                                       placeholder="Type a keyword and hit enter">
-                            </div>
-                        </form>
-                    </div>
-
                     <div class="sidebar-box">
                         <div class="bio text-center">
                             <img src="{% static 'images/person_1.jpg' %}" alt="Image Placeholder" class="img-fluid">
@@ -100,39 +91,32 @@
                                 <h2>Meagan Smith</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt
                                     repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit
-                                    molestias minus.</p>
-                                <p><a href="https://uz.linkedin.com/" class="btn btn-primary btn-sm">Read my bio</a></p>
+                                    molestias
+                                    minus.</p>
+                                <p><a href="/about" class="btn btn-primary btn-sm">Read my bio</a></p>
                                 <p class="social">
-                                    <a href="https://www.facebook.com" class="p-2"><span class="fa fa-facebook"></span>
-                                    </a>
-                                    <a href="https://twitter.com" class="p-2"><span class="fa fa-twitter"></span>
-                                    </a>
-                                    <a href="https://www.instagram.com" class="p-2"><span
-                                            class="fa fa-instagram"></span>
-                                    </a>
-                                    <a href="https://www.youtube.com" class="p-2"><span
-                                            class="fa fa-youtube-play"></span>
-                                    </a>
+                                    <a href="https://facebook.com/" class="p-2"><span class="fa fa-facebook"></span></a>
+                                    <a href="https://twitter.com/" class="p-2"><span class="fa fa-twitter"></span></a>
+                                    <a href="https://instagram.com/" class="p-2"><span
+                                            class="fa fa-instagram"></span></a>
+                                    <a href="https://youtube.com/" class="p-2"><span class="fa fa-youtube-play"></span></a>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-
                     <div class="sidebar-box">
                         <h3 class="heading">Popular Posts</h3>
                         <div class="post-entry-sidebar">
                             <ul>
-                                {% for popular_post in popular_posts|slice:':3' %}
+                                {% for post in posts|slice:':3' %}
                                     <li>
-                                        <a href>
-                                            <img src="{{ popular_post.image.url|safe }}" alt="Image placeholder"
-                                                 class="mr-4">
+                                        <a href="/blog/{{ post.id }}/">
+                                            <img src="{{ post.image.url }}" alt="Image placeholder" class="mr-4">
                                             <div class="text">
-                                                <h4>{{ popular_post.title }}</h4>
+                                                <h4>{{ post.title }}</h4>
                                                 <div class="post-meta">
-                                                    <span class="mr-2">{{ popular_post.created_at }}</span> &bullet;
-                                                    <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                                                    <span class="mr-2">{{ post.created_at }} </span>
                                                 </div>
                                             </div>
                                         </a>
@@ -141,12 +125,11 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="sidebar-box">
-                        <h3 class="heading">Tags</h3>
-                        <ul class="tags">
-                            {% for tag in tags %}
-                                <li><a href="/blog?cat={{ post.tags.id }}">{{ tag.name }}</a></li>
+                        <h3 class="heading">Categories</h3>
+                        <ul class="categories">
+                            {% for category in categories %}
+                                <li><a href="/blog/?cat={{ category.id }}">{{ category.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
+
+{% if search_query %}
+    <p>Showing results for: "{{ search_query }}"</p>
+{% endif %}
+
+{% if posts %}
+    <ul>
+        {% for post in posts %}
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="/blog/{{ post.id }}/" class="blog-entry element-animate"
+                       data-animate-effect="fadeIn">
+                        <img src="{{ post.image.url }}" alt="Image placeholder">
+                        <div class="blog-content-body">
+                            <div class="post-meta">
+                                <span class="category">{{ post.category }}</span>
+                                <span class="mr-2">{{ post.created_at.day }}.{{ post.created_at.month }}.{{ post.created_at.year }}</span>
+                            </div>
+                            <h2>{{ post.title }}</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+</body>
+</html>
