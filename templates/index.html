@@ -52,7 +52,7 @@
             </div>
             <div class="row blog-entries">
                 <div class="col-md-12 col-lg-8 main-content">
-                    {% for post in posts|slice:":4" %}
+                    {% for post in posts|slice:":3" %}
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="/blog/{{ post.id }}/" class="blog-entry element-animate"
@@ -61,7 +61,7 @@
                                     <div class="blog-content-body">
                                         <div class="post-meta">
                                             <span class="category">{{ post.category }}</span>
-                                            <span class="mr-2">{{ post.created_at.day }}.{{ post.created_at.month }}.{{ post.created_at.year }}</span>
+                                            <span class="mr-2">{{ post.created_at }}</span>
                                         </div>
                                         <h2>{{ post.title }}</h2>
                                     </div>
@@ -99,7 +99,7 @@
                         <h3 class="heading">More blog posts</h3>
                         <div class="post-entry-sidebar">
                             <ul>
-                                {% for post in posts|slice:':3' %}
+                                {% for post in more_blog_posts|slice:':3' %}
                                     <li>
                                         <a href="/blog/{{ post.id }}/">
                                             <img src="{{ post.image.url }}" alt="Image placeholder" class="mr-4">

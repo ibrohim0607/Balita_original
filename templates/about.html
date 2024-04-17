@@ -58,8 +58,6 @@
                             <nav aria-label="Page navigation" class="text-center">
                                 <ul class="pagination">
                                     {% if posts.has_previous %}
-
-                                        ...
                                         <li class="page-item"><a class="page-link"
                                                                  href="?page={{ posts.previous_page_number }}">Prev</a>
                                         </li>
@@ -109,7 +107,7 @@
                         <h3 class="heading">Popular Posts</h3>
                         <div class="post-entry-sidebar">
                             <ul>
-                                {% for post in posts|slice:':3' %}
+                                {% for post in post_list|slice:':3' %}
                                     <li>
                                         <a href="/blog/{{ post.id }}/">
                                             <img src="{{ post.image.url }}" alt="Image placeholder" class="mr-4">

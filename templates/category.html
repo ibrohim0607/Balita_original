@@ -5,14 +5,14 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <h2 class="mb-4">Posts</h2>
+                    <h2 class="mb-4">Category</h2>
                 </div>
             </div>
             <div class="row blog-entries">
                 <div class="col-md-12 col-lg-8 main-content">
                     <div class="row mb-5 mt-5">
                         <div class="col-md-12">
-                            {% for post in posts|slice:"8" %}
+                            {% for post in posts|slice:":4" %}
                                 <div class="post-entry-horzontal">
                                     <a href="/blog/{{ post.id }}/">
                                         <div class="image element-animate" data-animate-effect="fadeIn"
@@ -84,7 +84,7 @@
                         <h3 class="heading">Popular Posts</h3>
                         <div class="post-entry-sidebar">
                             <ul>
-                                {% for post in posts|slice:':3' %}
+                                {% for post in post_list|slice:':3' %}
                                     <li>
                                         <a href="/blog/{{ post.id }}/">
                                             <img src="{{ post.image.url }}" alt="Image placeholder" class="mr-4">
