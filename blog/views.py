@@ -17,8 +17,9 @@ def index_view(request):
     d = {
         'posts': page_obj.page(page),
         'more_blog_posts': more_blog_posts,
-        'categories': categories,
-        'post_list': post_list
+        'categories': categories.annotate(total=Count('post')),
+        'post_list': post_list,
+        'home': 'active'
     }
 
     return render(request, 'index.html', context=d)
@@ -27,9 +28,11 @@ def index_view(request):
 def contact_view(request):
     post_list = Post.objects.annotate(comment_count=Count('comment')).filter(
         comment_count__gt=0).order_by('-comment_count')
+    categories = Category.objects.all()
     d = {
         'post_list': post_list,
-        'categories': Category.objects.all()
+        'categories': categories.annotate(total=Count('post')),
+        'contact': 'active'
 
     }
     if request.method == 'POST':
@@ -56,11 +59,12 @@ def about_view(request):
     else:
         posts = Post.objects.filter(is_published=True).order_by('-created_at')
     post_obj = Paginator(posts, 4)
-    category = Category.objects.all()
+    categories = Category.objects.all()
     d = {
         'posts': post_obj.page(page),
         'post_list': post_list,
-        'category': category
+        'categories': categories.annotate(total=Count('post')),
+        'about': 'active'
     }
 
     return render(request, 'about.html', context=d)
@@ -81,7 +85,9 @@ def category_view(request):
     page_obj = Paginator(posts, 6)
 
     return render(request, 'category.html',
-                  context={'posts': page_obj.page(page), 'categories': categories, 'post_list': post_list})
+                  context={'posts': page_obj.page(page), 'categories': categories.annotate(total=Count('post')),
+                           'post_list': post_list,
+                           'category': 'active'})
 
 
 def blog_search_view(request):
@@ -92,7 +98,7 @@ def blog_search_view(request):
         posts = Post.objects.filter(title__icontains=text)
     else:
         posts = Post.objects.all()
-    return render(request, 'serach_results.html', context={'posts': posts, 'search_query': text})
+    return render(request, 'serach_results.html', context={'posts': posts, 'search_query': text, })
 
 
 def blog_detail_view(request, pk):
@@ -110,6 +116,6 @@ def blog_detail_view(request, pk):
         'post': post,
         'related_posts': related_posts,
         'comments': comments,
-        'category': category
+        'categories': categories.annotate(total=Count('post')),
     }
     return render(request, 'blog-single.html', context=d)

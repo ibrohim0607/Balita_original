@@ -166,7 +166,7 @@
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
                             {% for category in categories %}
-                                <li><a href="/blog/?cat={{ category.id }}">{{ category.name }}</a></li>
+                                <li><a href="/blog/?cat={{ category.id }}">{{ category.name }} {{ category.total }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
