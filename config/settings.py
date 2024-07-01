@@ -15,6 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -25,6 +26,7 @@ SECRET_KEY = 'django-insecure-%_o0_qv^(#-_!i%-_^g2=w=6pe_umf&_gsin=_(-%o@nf((bbj
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
 
 # Application definition
 
@@ -69,6 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -79,17 +82,6 @@ DATABASES = {
     }
 }
 
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "ibrohimbek_balita",
-#         "USER": "doadmin",
-#         "PASSWORD": "AVNS_feJOFOu7KkwbdfMc3JX",
-#         "HOST": "do-db-do-user-16947834-0.c.db.ondigitalocean.com",
-#         "PORT": "25060",
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -109,6 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -119,6 +112,7 @@ TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 
 USE_TZ = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -135,12 +129,12 @@ MEDIA_URL = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AWS_ACCESS_KEY_ID = 'DO00X7KW2E8Q4EQGGRCW'
-# AWS_SECRET_ACCESS_KEY = 'iRMinMjTiKzcY7ThShPihKgpcR9dSp6rIcBFyK+0evA'
-# AWS_STORAGE_BUCKET_NAME = 'balita'
-# AWS_S3_SIGNATURE_NAME = 's3v4'
-# AWS_S3_REGION_NAME = 'us-east-1'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# AWS_S3_VERITY = True
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 'DO00FMHAKFCE6LRAEZCW'
+AWS_SECRET_ACCESS_KEY = 'ItiX5qd62nXLki+vL8bZTfXBvJxdlN59pZv0d1yGOA4'
+AWS_STORAGE_BUCKET_NAME = 'uzmovie'
+AWS_S3_SIGNATURE_NAME = 's3v4'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
