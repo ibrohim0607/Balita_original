@@ -26,7 +26,7 @@
                 <div class="row">
                     {% for post in posts|slice:':3' %}
                         <div class="col-md-6 col-lg-4">
-                            <a href="/blog/{{ post.id }}/" class="a-block d-flex align-items-center height-md" x
+                            <a href="/blog/{{ post.id }}/" class="a-block d-flex align-items-center height-md"
                                style="background-image: url({{ post.image.url }}); ">
                                 <div class=" text">
                                     <div class="post-meta">
@@ -39,7 +39,6 @@
                         </div>
                     {% endfor %}
                 </div>
-                ...
             </div>
         </div>
     </section>
@@ -166,7 +165,8 @@
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
                             {% for category in categories %}
-                                <li><a href="/blog/?cat={{ category.id }}">{{ category.name }} {{ category.total }}</a></li>
+                                <li><a href="/blog/?cat={{ category.id }}">{{ category.name }} {{ category.total }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
