@@ -104,7 +104,7 @@ def blog_search_view(request):
 def blog_detail_view(request, pk):
     post = get_object_or_404(Post, pk=pk)
     related_posts = post.get_related_posts()
-    category = Category.objects.all()
+    categories = Category.objects.all()
     if request.method == 'POST':
         data = request.POST
         obj = Comment.objects.create(post_id=pk, name=data.get('name'), message=data.get('message'),
